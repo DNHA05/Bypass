@@ -450,17 +450,16 @@
         }
 
         if (localStorage.getItem('theme') === 'light') toggleTheme();
-    async function loadViews() {
-    try {
-        const res = await fetch("https://api.countapi.xyz/hit/harblx.online/visits");
+    async function loadViews(){
+    try{
+        const res = await fetch("https://api.countapi.xyz/update/harblx.online/visits?amount=1");
         const data = await res.json();
         document.getElementById("viewCount").innerText = data.value;
-    } catch {
+    }catch{
         document.getElementById("viewCount").innerText = "0";
     }
 }
-loadViews();
-
 </script>
 </body>
 </html>
+
