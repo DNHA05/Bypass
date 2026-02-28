@@ -321,6 +321,9 @@
 
         <footer class="mt-12 text-center pb-8">
             <p id="copyright" class="text-[11px] text-slate-400 font-semibold uppercase tracking-[0.2em] opacity-80">© 2026 • harblx.online</p>
+            <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-[0.2em] opacity-80 mt-2">
+    📈 View: <span id="viewCount">...</span>
+</p>
         </footer>
     </div>
 
@@ -447,7 +450,17 @@
         }
 
         if (localStorage.getItem('theme') === 'light') toggleTheme();
-    </script>
-</body>
+    async function loadViews() {
+    try {
+        const res = await fetch("https://api.countapi.xyz/hit/harblx.online/visits");
+        const data = await res.json();
+        document.getElementById("viewCount").innerText = data.value;
+    } catch {
+        document.getElementById("viewCount").innerText = "0";
+    }
+}
+loadViews();
 
+</script>
+</body>
 </html>
