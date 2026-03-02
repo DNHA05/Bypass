@@ -467,7 +467,11 @@
             setTimeout(() => toast.classList.add('opacity-0', 'translate-y-4'), 3000);
         }
 
-        if (localStorage.getItem('theme') === 'light') toggleTheme();
+        if (localStorage.getItem('theme') === 'light') {
+    document.documentElement.classList.remove('dark');
+} else {
+    document.documentElement.classList.add('dark');
+}
     async function loadViews(){
     try{
         const res = await fetch("https://api.countapi.xyz/update/harblx.online/visits?amount=1");
@@ -480,5 +484,6 @@
 </script>
 </body>
 </html>
+
 
 
