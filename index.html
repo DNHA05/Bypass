@@ -340,7 +340,7 @@
         <footer class="mt-12 text-center pb-8">
             <p id="copyright" class="text-[11px] text-slate-400 font-semibold uppercase tracking-[0.2em] opacity-80">© 2026 • harblx.online</p>
             <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-[0.2em] opacity-80 mt-2">
-    📈 View: <span id="viewCount">...</span>
+    📈 View: <span id="viewCount">0</span>
 </p>
         </footer>
     </div>
@@ -472,31 +472,21 @@
 } else {
     document.body.classList.add('dark');
 }
-
 async function loadViews() {
-    const userKey = "harblx_user_counted";
-
     try {
-        if (!localStorage.getItem(userKey)) {
-            // Chưa từng tính → tăng
-            const res = await fetch("https://countapi.xyz/update/harblx.online/visits?amount=1");
-            const data = await res.json();
-            document.getElementById("viewCount").innerText = data.value;
-            localStorage.setItem(userKey, "true");
-        } else {
-            // Đã tính → chỉ lấy số hiện tại
-            const res = await fetch("https://countapi.xyz/get/harblx.online/visits");
-            const data = await res.json();
-            document.getElementById("viewCount").innerText = data.value;
-        }
-    } catch {
+        const res = await fetch("https://harblx-counter-p7z7.vercel.app/api/views");
+        const data = await res.json();
+        document.getElementById("viewCount").innerText = data.views;
+    } catch (e) {
         document.getElementById("viewCount").innerText = "0";
     }
 }
-loadViews();
+
+window.addEventListener("load", loadViews);
 </script>
 </body>
 </html>
+
 
 
 
