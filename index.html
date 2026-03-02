@@ -468,22 +468,36 @@
         }
 
         if (localStorage.getItem('theme') === 'light') {
-    document.documentElement.classList.remove('dark');
+    document.body.classList.remove('dark');
 } else {
-    document.documentElement.classList.add('dark');
+    document.body.classList.add('dark');
 }
-    async function loadViews(){
-    try{
-        const res = await fetch("https://api.countapi.xyz/update/harblx.online/visits?amount=1");
-        const data = await res.json();
-        document.getElementById("viewCount").innerText = data.value;
-    }catch{
+
+async function loadViews() {
+    const userKey = "harblx_user_counted";
+
+    try {
+        if (!localStorage.getItem(userKey)) {
+            // Chưa từng tính → tăng
+            const res = await fetch("https://countapi.xyz/update/harblx.online/visits?amount=1");
+            const data = await res.json();
+            document.getElementById("viewCount").innerText = data.value;
+            localStorage.setItem(userKey, "true");
+        } else {
+            // Đã tính → chỉ lấy số hiện tại
+            const res = await fetch("https://countapi.xyz/get/harblx.online/visits");
+            const data = await res.json();
+            document.getElementById("viewCount").innerText = data.value;
+        }
+    } catch {
         document.getElementById("viewCount").innerText = "0";
     }
 }
+loadViews();
 </script>
 </body>
 </html>
+
 
 
 
