@@ -474,7 +474,7 @@
 }
 async function loadViews() {
     try {
-        const res = await fetch("https://harblx-counter-p7z7.vercel.app/api/views");
+        const res = await fetch("/api/views");
         const data = await res.json();
         document.getElementById("viewCount").innerText = data.views;
     } catch (e) {
@@ -484,6 +484,7 @@ async function loadViews() {
 window.addEventListener("DOMContentLoaded", loadViews);
 </script>
 </html>
+
 
 
 
