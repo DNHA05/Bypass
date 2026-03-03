@@ -340,7 +340,7 @@
         <footer class="mt-12 text-center pb-8">
             <p id="copyright" class="text-[11px] text-slate-400 font-semibold uppercase tracking-[0.2em] opacity-80">© 2026 • harblx.online</p>
             <p class="text-[11px] text-slate-400 font-semibold uppercase tracking-[0.2em] opacity-80 mt-2">
-    📈 View: <span id="viewCount">0</span>
+    📈 View: <span id="https://harblx-counter-p7z7.vercel.app/api/views">0</span>
 </p>
         </footer>
     </div>
@@ -474,7 +474,7 @@
 }
 async function loadViews() {
     try {
-        const res = await fetch("/api/views");
+        const res = await fetch("https://harblx-counter-p7z7.vercel.app/api/views");
         const data = await res.json();
         document.getElementById("viewCount").innerText = data.views;
     } catch (e) {
@@ -484,6 +484,7 @@ async function loadViews() {
 window.addEventListener("DOMContentLoaded", loadViews);
 </script>
 </html>
+
 
 
 
